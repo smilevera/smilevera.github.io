@@ -4,11 +4,6 @@ title:  "Welcome to Wonderland"
 
 categories: jekyll update
 ---
----
-layout: post
-title:  "Welcome to Wonderland!"
-categories: jekyll update
----
 If you accidently read this page, then LUCKY FOR YOU!
 
 This is my first personal website.
