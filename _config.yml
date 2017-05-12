@@ -24,7 +24,7 @@ github_username:  smilevera
 
 # Build settings
 markdown: kramdown
-theme: minima
+theme:
 gems:
   - jekyll-feed
 exclude:
