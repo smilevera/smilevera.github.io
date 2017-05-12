@@ -23,10 +23,12 @@ twitter_username: /vacant
 github_username:  smilevera
 
 # Build settings
-markdown: kramdown
-theme:
-gems:
-  - jekyll-feed
+# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
+highlighter: rouge
+permalink: pretty
+paginate: 10
+
+anchorjs: true 
 exclude:
   - Gemfile
   - Gemfile.lock
