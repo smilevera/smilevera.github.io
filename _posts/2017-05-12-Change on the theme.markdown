@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Wonderland"
+title:  "Change on the theme"
 
 categories: jekyll update
 ---
