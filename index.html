@@ -1,82 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Skillfair</title>
-  <meta charset="utf-8"/>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
- 
-  <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,700' rel='stylesheet' type='text/css'>
-  <link rel="stylesheet" type="text/css" href="main.css">
-</head>
-<body>
-<header class="container">
-  <div class="row">
-    <h1 class="col-sm-4">Elsa wonderland</h1>
-    <nav class="col-sm-8 text-right">
-      <p>newest</p>
-      <p>catalog</p>
-      <p>contact</p>
-      </nav>
-    </div>
-</header>
-  <section class="jumbotron">
-    <div class="container">
-      <div class="row text-center">
-        <h2> All About Me</h2>
-        <h3> This  year's best</h3>
-        <a class="btn btn-primary" hred="#" role="button" href="seeall.html">See all</a>
+---
+layout: page
+description: "一生想做浪漫极客"
+---
+
+{% for post in paginator.posts %}
+<div class="post-preview">
+    <a href="{{ post.url | prepend: site.baseurl }}">
+        <h2 class="post-title">
+            {{ post.title }}
+        </h2>
+        {% if post.subtitle %}
+        <h3 class="post-subtitle">
+            {{ post.subtitle }}
+        </h3>
+        {% endif %}
+        <div class="post-content-preview">
+            {{ post.content | strip_html | truncate:200 }}
         </div>
-		</div>
-      </section>
-  <section class="container">
-    <div class="row">
-      <figure class="col-sm-4">
-        <img src="http://note.youdao.com/yws/public/resource/7a03d21d86bc26e27f209faf66d3dec4/xmlnote/WEBRESOURCE1963d83a8778846dac580eedf1c0e3be/9172"/>
-          <p>Travel</p>
-        </figure>
-        <figure class="col-sm-4">
-          <img src="http://note.youdao.com/yws/public/resource/7a03d21d86bc26e27f209faf66d3dec4/xmlnote/WEBRESOURCEc99bf1d55912d336b7ff7209ed8415d6/9183"/>
-          <p>Product</p>
-        </figure>
-          </figure>
-        <figure class="col-sm-4">
-          <img src="http://note.youdao.com/yws/public/resource/7a03d21d86bc26e27f209faf66d3dec4/xmlnote/WEBRESOURCEc99bf1d55912d336b7ff7209ed8415d6/9183"/>
-          <p>Product</p>
-        </figure>
-      </div>
-    <div class="row">
-        <figure class="col-sm-4">
-          <img src="http://note.youdao.com/yws/public/resource/7a03d21d86bc26e27f209faf66d3dec4/xmlnote/WEBRESOURCEddf4c1b5c1439c87415815fbc840eff8/9187"/>
-          <p>Reading<p>
-        </figure>
-        <figure class="col-sm-4">
-          <img src="http://note.youdao.com/yws/public/resource/7a03d21d86bc26e27f209faf66d3dec4/xmlnote/WEBRESOURCE6957cc4979fc8c19e0e80639e0612a29/9185"/>
-          <p>Learn</p>
-        </figure>
-          </figure>
-        <figure class="col-sm-4">
-          <img src="http://note.youdao.com/yws/public/resource/7a03d21d86bc26e27f209faf66d3dec4/xmlnote/WEBRESOURCEc99bf1d55912d336b7ff7209ed8415d6/9183"/>
-          <p>Product</p>
-        </figure>
-      </div>
+    </a>
+    <p class="post-meta">
+        Posted by {% if post.author %}{{ post.author }}{% else %}{{ site.title }}{% endif %} on {{ post.date | date: "%B %-d, %Y" }}
+    </p>
+</div>
+<hr>
+{% endfor %}
 
-    
-    </section>
-  <footer class="container">
-    <div class="row">
-      <p class="col-sm-4">&copy;2017 RollingSunshine</p>
-      <ul class="col-sm-8">
-        <li class="col-sm-1">
-        <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/twitter.svg"/>
-             </li>
-        <li class="col-sm-1"> <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/facebook.svg"/></li>
-
-        <li class="col-sm-1">      <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/instagram.svg"/></li>
-    
-        <li class="col-sm-1">  <img src="https://s3.amazonaws.com/codecademy-content/projects/make-a-website/lesson-4/medium.svg"/></li>
-        </ul>
-      </div>
-    </footer>
-
-</body>
-</html>
+<!-- Pager -->
+{% if paginator.total_pages > 1 %}
+<ul class="pager">
+    {% if paginator.previous_page %}
+    <li class="previous">
+        <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+    </li>
+    {% endif %}
+    {% if paginator.next_page %}
+    <li class="next">
+        <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+    </li>
+    {% endif %}
+</ul>
+{% endif %}
