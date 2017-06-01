@@ -3,17 +3,21 @@ layout: post
 title:  "【技能|SQL】Matrix Business Analysis"
 categories: jekyll update
 ---
-## 写在前面
+## 1.写在前面
 终于把codecademy上面的SQL课程全部学完啦～撒花～
+<<<<<<< HEAD
 ![](/img/post0601.jpg)
+=======
+！[图片](http://note.youdao.com/yws/public/resource/023f80b51ac37e4531a4a152d338e975/xmlnote/WEBRESOURCE23c2bb1f52e366fc72b2a34f5ad28f0e/9296.jpg)
+>>>>>>> origin/master
 
 中途还报了几个bug，不知道会不会收到回复。
 下面放上学习过程中记录的笔记。
 
-## 附上一些SQL相关参考文档
-[website](http://www.w3school.com.cn/sql/sql_join_inner.asp)
+## 2.附上一些SQL相关参考文档
+[w3school](http://www.w3school.com.cn/sql/sql_join_inner.asp)
 
-## 学习笔记
+## 3.学习笔记
 1.销量按日期统计并排序
 ```
 SELECT date(ordered_at),count(1)
