@@ -11,7 +11,7 @@ categories: jekyll update
 下面放上学习过程中记录的笔记。
 
 ## 附上一些SQL相关参考文档
-[website](http://www.w3school.com.cn/sql/sql_join_inner.asp)
+[w3school](http://www.w3school.com.cn/sql/sql_join_inner.asp)
 
 ## 学习笔记
 1.销量按日期统计并排序
