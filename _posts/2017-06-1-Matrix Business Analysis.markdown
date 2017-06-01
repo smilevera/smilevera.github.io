@@ -78,8 +78,8 @@ group by 1
 order by 2 desc;
 ```
 7.
-# KPI
-## daily revenue,DAU, Daily ARPU, Daily ARPPU,1 Day Retention
+### KPI
+### daily revenue,DAU, Daily ARPU, Daily ARPPU,1 Day Retention
 
 ```
 select
