@@ -5,7 +5,7 @@ categories: jekyll update
 ---
 ## 1.写在前面
 终于把codecademy上面的SQL课程全部学完啦～撒花～
-！[](http://note.youdao.com/yws/public/resource/023f80b51ac37e4531a4a152d338e975/xmlnote/WEBRESOURCE23c2bb1f52e366fc72b2a34f5ad28f0e/9296)
+！[图片](http://note.youdao.com/yws/public/resource/023f80b51ac37e4531a4a152d338e975/xmlnote/WEBRESOURCE23c2bb1f52e366fc72b2a34f5ad28f0e/9296.jpg)
 
 中途还报了几个bug，不知道会不会收到回复。
 下面放上学习过程中记录的笔记。
