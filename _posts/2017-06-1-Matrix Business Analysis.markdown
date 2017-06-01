@@ -3,7 +3,7 @@ layout: post
 title:  "【技能|SQL】Matrix Business Analysis"
 categories: jekyll update
 ---
-# 1.写在前面
+## 1.写在前面
 终于把codecademy上面的SQL课程全部学完啦～撒花～
 
 ![](/img/post0601.jpg)
