@@ -1,11 +1,12 @@
 ---
 layout: post
-title:  "【技能|Machine Learning】Handwritten digits recognition based on BPNN"
+title:  "【技能|Machine Learning】Handwritten digits recognition based on BPNN "
 categories: jekyll update
 ---
 # 写在前面
 神经网络与机器学习课程上的作业，写了一个三层的神经网络，使用了反向传播算法，最后得到的效率可以达到95%+，不过没有专门区分训练集和测试集。
 # 主程序
+```
 % Train a 3 layer neural network using Backpropagation algorithm to realize handwritten digits recogniton
 
 % 1.Setup the fixed parameters 
@@ -13,17 +14,19 @@ input_layer_size  = 400;  % 20x20 Input Images of Digits
 hidden_layer_size = 25;   % 25 hidden units
 num_labels = 10;          % 10 labels, from 1 to 10   
 
-
+```
 
 % 2.Initialize the weight 
+```
 fprintf('\nInitializing Neural Network Parameters ...\n')
 
 initial_Theta1 = randInitializeWeights(input_layer_size, hidden_layer_size);
 initial_Theta2 = randInitializeWeights(hidden_layer_size, num_labels);
 initial_nn_params = [initial_Theta1(:) ; initial_Theta2(:)];
-
+```
 
 % 3.Training NN 
+```
 fprintf('\nTraining Neural Network... \n')
 load('TDATA.mat');
 m = size(X, 1);
@@ -40,15 +43,17 @@ Theta1 = reshape(nn_params(1:hidden_layer_size * (input_layer_size + 1)), ...
                  hidden_layer_size, (input_layer_size + 1));
 Theta2 = reshape(nn_params((1 + (hidden_layer_size * (input_layer_size + 1))):end), ...
                  num_labels, (hidden_layer_size + 1));
-
+```
 % 4.Implement Predict 
+```
 fprintf('\n Predicting... \n');
 
 pred = predict(Theta1, Theta2, v);
 fprintf('\nTraining Set Accuracy: %f\n', mean(double(pred == y)) * 100);
 
-
+```
 # nnCostFunction.m
+```
 function [J grad] = nnCostFunction(nn_params, ...
                                    input_layer_size, ...
                                    hidden_layer_size, ...
@@ -92,8 +97,9 @@ regular1 = lambda * Theta1 / m;
 regular1(:,1) = 0;
 Theta2_grad = Delta2/m + regular2;
 Theta1_grad = Delta1/m + regular1;
-
+```
 # predict.m
+```
 function p = predict(Theta1, Theta2, X)
 m = size(X, 1);
 num_labels = size(Theta2, 1);
@@ -103,8 +109,9 @@ h2 = sigmoid([ones(m, 1) h1] * Theta2');
 [dummy, p] = max(h2, [], 2);
 
 end
-
+```
 # randInitializeWeights.m
+```
 function W = randInitializeWeights(L_in, L_out)
 
 W = zeros(L_out, 1 + L_in);
@@ -112,14 +119,15 @@ epsilon_init=0.12;
 W=rand(L_out,1+L_in)*2*epsilon_init-epsilon_init;
 
 end
-
+```
 # sigmoid.m
-
+```
 function g = sigmoid(z)
 g = 1.0 ./ (1.0 + exp(-z));
 end
-
+```
 # fmincg
+```
 function [X, fX, i] = fmincg(f, X, options, P1, P2, P3, P4, P5)
 % Minimize a continuous differentialble multivariate function. Starting point
 % is given by "X" (D by 1), and the function named in the string "f", must
@@ -295,5 +303,5 @@ while i < abs(length)                                      % while not finished
   end
 end
 fprintf('\n');
-
+```
 
