@@ -3,7 +3,6 @@ layout: post
 title:  "【技能|Python】基于Python的学校人事管理系统数据库"
 categories: jekyll update
 ---
-# -*- coding: utf-8 -*- 
 #实现一个简单的学校人事管理系统
 
 #1.派生两个专用的异常类
