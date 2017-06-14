@@ -1,0 +1,148 @@
+---
+layout: post
+title:  "【技能|Python】基于Python的学校人事管理系统数据库"
+categories: jekyll update
+---
+# -*- coding: utf-8 -*- 
+#实现一个简单的学校人事管理系统
+
+#1.派生两个专用的异常类
+class PersonTypeError(TypeError):
+	pass
+class PersonValueError(ValueError):
+	pass
+import datetime
+
+# 2.定义公共人员类
+class Person:
+	_num=0
+	def __init__(self,name,sex,birthday,ident):
+		if not (isinstance(name,str) and sex in ("女","男")):
+			raise PersonValueError(name,sex)
+		try:
+			birth=datetime.date(*birthday)
+		except:
+			raise PersonValueError("Wrong date:",birthday)
+		self._name=name
+		self._sex=sex
+		self._birthday=birth
+		self._id=ident
+		Person._num+=1
+	def id(self):return self._id
+	def name(self):return self._name
+	def sex(self):return self._sex
+	def birthday(self):return self._birthday
+	def age(self):return (datetime.date.today().year-self._birthday.year)
+	def set_name(self,name):
+		if not ininstance(name,str):
+			raise PersonValueError("set_name",name)
+		self._name=name
+	def __lt__(self,another):
+		if not isinstance(another,Person):
+			raise PersonTypeError(another)
+		return self._id < another._id
+	@classmethod
+	def num(cls):return Person._num
+	def __str__(self):
+		return " ".join((self._id,self._name,self._sex,str(self._birthday)))
+	def details(self):
+		return ",".join(("编号:"+self._id,"姓名:"+self._name,"性别:"+self._sex,"出生日期:"+str(self._birthday)))
+#一个测试用例
+# p1=Person("谢衣","女",(1992, 3, 18),"1201510111")
+# p2=Person("陈衣","女",(1993, 4, 20),"1201510116")
+# p3=Person("刘衣","男",(1992, 4, 20),"1201510113")
+# p4=Person("身份衣","女",(1991, 4, 20),"1201510115")
+
+# plist2=[p1,p2,p3,p4]
+# for p in plist2:
+# 	print(p)
+# print("\n After sorting:")
+# plist2.sort()
+# for p in plist2:
+# 	print(p.details())
+# print("People created: ",Person.num(),"\n")
+
+#3.定义学生类
+class Student(Person):
+	_id_num=0
+
+	@classmethod
+	def _id_gen(cls):
+		cls._id_num +=1
+		year=datetime.date.today().year
+		return "1{:04}{:05}".format(year,cls._id_num)
+
+	def __init__(self,name,sex,birthday,department):
+		Person.__init__(self,name,sex,birthday, Student._id_gen())
+		self._department=department
+		self._enroll_date=datetime.date.today()
+		self._courses={}
+	def department(self):return self._department
+	def en_year(self): return self._enroll_date.year()
+	def set_course(self,course_name):
+		self._courses[course_name]=None
+	def set_score(self,course_name,score):
+		if course_name not in self._courses:
+			raise PersonTypeError("Not this course selected:",course_name)
+		self._courses[course_name]=score
+	def scores(self):return [(cname,self._courses[name]) for cname in self._courses]
+
+	def details(self):
+		return ",".join((Person.details(self),"入学日期"+str(self._enroll_date),"院系"+self._department,"课程记录"+str(self.scores())))
+
+#4.定义教职工类
+class Staff(Person):
+	_id_num=0
+	@classmethod
+	def _id_gen(cls,birthday):
+		cls._id_num +=1
+		birth_year=datetime.date(*birthday).year
+		return "0{:04}{:05}".format(birth_year,cls._id_num)	
+
+	def _init_(self,name,sex,birthday,entry_date=None):   
+		super().__init__(name,sex,birthday,Staff._id_gen(birthday))#自动查找基类并初始化
+		if entry_date:
+			try:
+				self._entry_date=datetime.date(*entry_date)
+			except:
+				raise PersonValueError("Wrong date:",entry_date)
+		else:
+			self._entry_date=datetime.date.today()
+		self._salary=1720
+		self._department="未定"
+		self._position="未定"
+	def department(self):return self._department
+	def salary(self):return self._salary
+	def entry_date(self):return self._entry_date
+	def positon(self):return self._position
+	def set_salary(self,amount):
+		if not type(amount) is int:
+			raise TypeError
+		self._salary=amount
+	def set_position(self,position):
+		self._position=position
+	def set_department(self,department):
+		self._department=department
+	def details(self):
+		return ",".join((super().details(),"入职日期",+str(self._entry_date),"院系"+self.department,"职位"+self._position,"工资"+str(self._salary)))
+
+#测试用例
+p1=Staff("陈汉","男",(1934,10,6))
+p2=Staff("陈晨","男",(1934,5,6))
+
+print(p1)
+print(p2)
+
+p1.set_department("数学")
+p1.set_position("副教授")
+p1.set_salary(8000)
+
+print(p1.details())
+print(p2.details())
+
+
+
+
+
+
+

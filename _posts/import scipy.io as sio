@@ -1,0 +1,8 @@
+import scipy.io as sio  
+from pylab import *
+import numpy as np  
+  
+matfn='/Users/elsa/desktop/BPNN/TDATA.mat'   
+data=sio.loadmat(matfn)
+m=size(data)
+print m  
