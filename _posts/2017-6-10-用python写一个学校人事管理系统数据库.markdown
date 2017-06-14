@@ -4,9 +4,9 @@ title:  "【技能|Python】基于Python的学校人事管理系统数据库"
 categories: jekyll update
 ---
 
-#实现一个简单的学校人事管理系统
+# 实现一个简单的学校人事管理系统
 
-#1.派生两个专用的异常类
+## 1.派生两个专用的异常类
 ```
 class PersonTypeError(TypeError):
 	pass
@@ -14,7 +14,7 @@ class PersonValueError(ValueError):
 	pass
 import datetime
 ```
-# 2.定义公共人员类
+## 2.定义公共人员类
 ```
 class Person:
 	_num=0
@@ -50,8 +50,9 @@ class Person:
 	def details(self):
 		return ",".join(("编号:"+self._id,"姓名:"+self._name,"性别:"+self._sex,"出生日期:"+str(self._birthday)))
 ```
+
+## 一个测试用例
 ```
-#一个测试用例
 # p1=Person("谢衣","女",(1992, 3, 18),"1201510111")
 # p2=Person("陈衣","女",(1993, 4, 20),"1201510116")
 # p3=Person("刘衣","男",(1992, 4, 20),"1201510113")
@@ -66,7 +67,7 @@ class Person:
 # 	print(p.details())
 # print("People created: ",Person.num(),"\n")
 ```
-#3.定义学生类
+## 3.定义学生类
 ```
 class Student(Person):
 	_id_num=0
@@ -95,7 +96,7 @@ class Student(Person):
 	def details(self):
 		return ",".join((Person.details(self),"入学日期"+str(self._enroll_date),"院系"+self._department,"课程记录"+str(self.scores())))
 ```
-#4.定义教职工类
+## 4.定义教职工类
 ```
 class Staff(Person):
 	_id_num=0
@@ -132,7 +133,7 @@ class Staff(Person):
 	def details(self):
 		return ",".join((super().details(),"入职日期",+str(self._entry_date),"院系"+self.department,"职位"+self._position,"工资"+str(self._salary)))
 ```
-#测试用例
+## 测试用例
 ```
 p1=Staff("陈汉","男",(1934,10,6))
 p2=Staff("陈晨","男",(1934,5,6))
